@@ -1,25 +1,285 @@
+/* ==========================================================
+   Currículo - Davi Rafael Candido de Mello
+   Arquivo: style.css
+   ========================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;500;600&display=swap");
+
+/* ---------- Variáveis ---------- */
+:root {
+  --fundo: #e9edf4;
+  --folha: #ffffff;
+  --tinta: #12203a;
+  --texto: #34415a;
+  --suave: #6a7690;
+  --linha: #d9e0ec;
+  --destaque: #2450ff;
+  --destaque-claro: #e6ecff;
+
+  --fonte-titulo: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --fonte-texto: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+
+  --raio: 14px;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
-	font-family: Arial, sans-serif;
-	background: #f4f4f4;
-	color: #000000;
-	padding: 2rem;
-	font-family: 'Times New Roman', Times, serif;
+  margin: 0;
+  padding: clamp(1rem, 4vw, 3.5rem) clamp(0.75rem, 3vw, 2rem);
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: var(--fonte-texto);
+  font-size: 1.05rem;
+  line-height: 1.65;
 }
 
+/* ---------- Folha do currículo ---------- */
 .container {
-	max-width: 700px;
-	margin: 0 auto;
-	background: white;
-	padding: 2rem;
-	border-radius: 8px;
+  max-width: 880px;
+  margin: 0 auto;
+  background: var(--folha);
+  border-radius: var(--raio);
+  box-shadow: 0 1px 2px rgba(18, 32, 58, 0.06), 0 18px 48px -18px rgba(18, 32, 58, 0.25);
+  overflow: hidden;
 }
 
-h1,
-h2 {
-	color: #222;
-	box-shadow: #000000;
-	border-radius: 15px;
+/* ---------- Cabeçalho ---------- */
+header {
+  position: relative;
+  padding: clamp(1.75rem, 5vw, 3.25rem) clamp(1.5rem, 5vw, 3.5rem);
+  background: var(--tinta);
+  color: #dfe6f5;
 }
-p{
-	font-family: 'Times New Roman', Times, serif;
+
+/* faixa de destaque na lateral */
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 10px;
+  background: var(--destaque);
+}
+
+header h1 {
+  margin: 0 0 0.6rem;
+  font-family: var(--fonte-titulo);
+  font-weight: 800;
+  font-size: clamp(2rem, 6.2vw, 3.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  text-wrap: balance;
+}
+
+header p {
+  margin: 0.35rem 0;
+  font-size: 1rem;
+}
+
+header p strong {
+  display: inline-block;
+  padding: 0.1rem 0.7rem;
+  margin-right: 0.15rem;
+  border-radius: 999px;
+  background: var(--destaque);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+header a {
+  color: #ffffff;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.4);
+  text-underline-offset: 0.2em;
+  overflow-wrap: anywhere;
+  transition: text-decoration-color 0.15s ease;
+}
+
+header a:hover {
+  text-decoration-color: #ffffff;
+}
+
+/* ---------- Seções ---------- */
+section {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  column-gap: 2.5rem;
+  padding: clamp(1.5rem, 3.5vw, 2.25rem) clamp(1.5rem, 5vw, 3.5rem);
+  border-top: 1px solid var(--linha);
+}
+
+header + section {
+  border-top: 0;
+}
+
+section h2 {
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 1.3rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--tinta);
+}
+
+section p {
+  margin: 0;
+  max-width: 62ch;
+}
+
+section ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ---------- Experiência e educação (linha do tempo) ---------- */
+section ul:not(.skills) li {
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--linha);
+}
+
+section ul:not(.skills) li::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 0.5rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--folha);
+  border: 3px solid var(--destaque);
+}
+
+section ul:not(.skills) li + li {
+  margin-top: 1.5rem;
+}
+
+section li strong {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 1.12rem;
+  color: var(--tinta);
+}
+
+section li em {
+  display: inline-block;
+  margin: 0.2rem 0 0.35rem;
+  padding: 0.05rem 0.6rem;
+  border-radius: 6px;
+  background: var(--destaque-claro);
+  color: var(--destaque);
+  font-style: normal;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Habilidades ---------- */
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.skills li {
+  padding: 0.3rem 0.95rem;
+  border: 1.5px solid var(--linha);
+  border-radius: 999px;
+  background: #f7f9fc;
+  color: var(--tinta);
+  font-weight: 600;
+  font-size: 0.97rem;
+  line-height: 1.5;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.skills li:hover {
+  background: var(--destaque);
+  border-color: var(--destaque);
+  color: #ffffff;
+}
+
+/* ---------- Acessibilidade ---------- */
+a:focus-visible {
+  outline: 3px solid var(--destaque);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+header a:focus-visible {
+  outline-color: #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+/* ---------- Tablet e celular ---------- */
+@media (max-width: 720px) {
+  section {
+    grid-template-columns: 1fr;
+    row-gap: 0.9rem;
+  }
+
+  section h2 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 420px) {
+  body {
+    font-size: 1rem;
+  }
+
+  header::before {
+    width: 6px;
+  }
+}
+
+/* ---------- Impressão / salvar em PDF ---------- */
+@media print {
+  @page {
+    margin: 12mm;
+  }
+
+  body {
+    padding: 0;
+    background: #ffffff;
+    font-size: 11pt;
+  }
+
+  .container {
+    max-width: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  header {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  section {
+    break-inside: avoid;
+  }
+
+  .skills li:hover {
+    background: #f7f9fc;
+    color: var(--tinta);
+    border-color: var(--linha);
+  }
 }
